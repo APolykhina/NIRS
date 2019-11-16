@@ -1,0 +1,66 @@
+% arara: pdflatex
+% arara: bibtex
+% arara: makeglossaries
+% arara: pdflatex
+% arara: remover: { patterns: [ '*.aux', '*.xdy', '*.toc', '*.out', '*.gl*', '*.ac*', '*.alg', '*.blg', '*.bbl' ] }
+%% Преамбула TeX-файла
+
+\documentclass[utf8, 14pt, bold]{G7-32}
+\include{preamble.inc}
+
+\ifPDFTeX
+	\include{listings.inc}
+\else
+	\usepackage{local-minted}
+\fi
+
+\include{macros.inc}
+\renewcommand{\thesection}{\arabic{section}}
+
+\begin{document}
+\frontmatter
+
+\RPZ{к научно-исследовательской работе}
+\RPZTheme{\null\hfill \bigskip Исследование методов решения проблемы \hfill\null \\ \\ \null\hfill \bigskip миллионеров Яо и вариантов применения \hfill\null \\ \\ \null\hfill \bigskip этих решений в тематике финансовых \hfill\null \\ \\ \null\hfill \bigskip и экономических задач \hfill\null} % ugly
+\RPZGroup{ИУ8-94}
+\RPZStudent{А.Д. Егорова}
+\RPZTeacher{Д.А. Жуков}
+
+
+\include{00-title-bmstu}
+
+\include{glossary}
+
+\include{00-abstract}
+
+\tableofcontents
+\printglossary[title=ТЕРМИНЫ И ОПРЕДЕЛЕНИЯ, toctitle=ТЕРМИНЫ И ОПРЕДЕЛЕНИЯ,nonumberlist]
+\printglossary[type=acronym, title=ПЕРЕЧЕНЬ СОКРАЩЕНИЙ И ОБОЗНАЧЕНИЙ, toctitle=ПЕРЕЧЕНЬ СОКРАЩЕНИЙ И ОБОЗНАЧЕНИЙ,nonumberlist]
+
+\include{12-intro}
+\chapter*{ОСНОВНАЯ ЧАСТЬ}
+\addcontentsline{toc}{chapter}{ОСНОВНАЯ ЧАСТЬ}
+tests
+\mainmatter
+
+\input{20-analysis}
+\input{30-design}
+%\input{40-impl}
+\input{50-research}
+\input{60-economics}
+\input{70-bzd}
+
+\backmatter %% Здесь заканчивается нумерованная часть документа и начинаются ссылки и
+            
+\input{80-conclusion}%% заключение
+
+
+\input{81-biblio}
+
+
+\appendix   % Тут идут приложения
+
+\input{90-appendix1}
+\input{91-appendix2}
+
+\end{document}
